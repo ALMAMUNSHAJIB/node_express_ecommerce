@@ -15,13 +15,16 @@ mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true})
         console.log('Database connected!!!');
     }).catch((err) => console.log(err));
 
-    const port = 3300;
+   
+
 
 //import route files
 const userRouter = require('./routes/user');
+const authRouter = require('./routes/auth');
+app.use('/api',authRouter);
 app.use('/api/user', userRouter);
 
-
+const port = 3300;
 app.listen(port, () => {
     console.log(`Server is runing ${port}`);''
 });
